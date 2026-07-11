@@ -38,6 +38,12 @@ export function ProjectAttachments({ projectId, workspaceId }: ProjectAttachment
     return `${(kb / 1024).toFixed(1)} MB`;
   };
 
+  const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+  const getFileUrl = (url?: string) => {
+    if (!url) return '';
+    return url.startsWith('http') ? url : `${baseUrl}${url}`;
+  };
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 overflow-y-auto min-h-0 space-y-4 mb-6 custom-scrollbar pr-2">
@@ -56,7 +62,7 @@ export function ProjectAttachments({ projectId, workspaceId }: ProjectAttachment
                   <Icons.fileText className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <a href={file.url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-white/90 truncate block hover:underline hover:text-emerald-400 transition-colors">
+                  <a href={getFileUrl(file.url)} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-white/90 truncate block hover:underline hover:text-emerald-400 transition-colors">
                     {file.name}
                   </a>
                   <div className="flex items-center gap-2 text-[10px] text-white/40 mt-0.5">

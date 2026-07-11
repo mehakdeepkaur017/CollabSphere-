@@ -15,6 +15,10 @@ export function FilePreviewModal({ file, onClose, onDownload }: FilePreviewModal
   const isImage = file.mimeType.includes("image");
   const isVideo = file.mimeType.includes("video");
 
+  const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+  const getFileUrl = (url: string) => url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const fileUrl = getFileUrl(file.url);
+
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 sm:p-10">
       <motion.div
@@ -50,19 +54,19 @@ export function FilePreviewModal({ file, onClose, onDownload }: FilePreviewModal
 
         <div className="flex-1 overflow-auto bg-black/40 flex items-center justify-center pt-16">
           {isImage ? (
-            <img src={file.url} alt={file.name} className="max-w-full max-h-full object-contain cursor-zoom-in hover:scale-105 transition-transform duration-300" />
+            <img src={fileUrl} alt={file.name} className="max-w-full max-h-full object-contain cursor-zoom-in hover:scale-105 transition-transform duration-300" />
           ) : isVideo ? (
-            <video src={file.url} controls className="max-w-full max-h-full rounded-lg shadow-2xl bg-black" />
+            <video src={fileUrl} controls className="max-w-full max-h-full rounded-lg shadow-2xl bg-black" />
           ) : file.mimeType.includes("audio") ? (
             <div className="w-full max-w-md p-8 bg-white/5 rounded-2xl border border-white/10 flex flex-col items-center gap-6">
               <div className="w-24 h-24 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
                 <Icons.music className="w-10 h-10" />
               </div>
               <h4 className="text-white font-medium">{file.name}</h4>
-              <audio src={file.url} controls className="w-full" />
+              <audio src={fileUrl} controls className="w-full" />
             </div>
           ) : file.mimeType.includes("pdf") ? (
-            <iframe src={file.url} className="w-full h-full rounded-lg bg-white" title={file.name} />
+            <iframe src={fileUrl} className="w-full h-full rounded-lg bg-white" title={file.name} />
           ) : (
             <div className="flex flex-col items-center justify-center text-white/40 space-y-4">
               <Icons.file className="w-24 h-24 opacity-20" />

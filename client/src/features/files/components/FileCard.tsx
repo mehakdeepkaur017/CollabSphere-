@@ -103,7 +103,7 @@ export function FileCard({ file, onPreview, onDelete, viewMode, isSelected, onSe
     >
       <div className="h-32 w-full bg-white/[0.02] relative border-b border-white/5 overflow-hidden flex items-center justify-center">
         {isImage ? (
-          <img src={file.url} alt={file.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          <img src={file.url.startsWith('http') ? file.url : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}${file.url}`} alt={file.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
         ) : (
           <Icon className="w-12 h-12 text-white/20 group-hover:scale-110 group-hover:text-indigo-400 transition-all duration-500" />
         )}
