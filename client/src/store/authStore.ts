@@ -26,7 +26,12 @@ export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   isLoading: true,
 
-  setUser: (user) => set({ user, isAuthenticated: !!user, isLoading: false }),
+  setUser: (user) => {
+    set({ user, isAuthenticated: !!user, isLoading: false })
+    import('./workspaceStore').then(({ useWorkspaceStore }) => {
+      useWorkspaceStore.getState().setActiveWorkspace(null)
+    })
+  },
 
   checkAuth: async () => {
     try {
@@ -34,6 +39,9 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ user: response.data.user, isAuthenticated: true, isLoading: false })
     } catch (error) {
       set({ user: null, isAuthenticated: false, isLoading: false })
+      import('./workspaceStore').then(({ useWorkspaceStore }) => {
+        useWorkspaceStore.getState().setActiveWorkspace(null)
+      })
     }
   },
 
