@@ -25,6 +25,12 @@ export function MessageItem({ message, isGrouped, onReaction, onPin, onDelete, o
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(message.content);
 
+  const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+  const getFileUrl = (url?: string) => {
+    if (!url) return '';
+    return url.startsWith('http') ? url : `${baseUrl}${url}`;
+  };
+
   const handleEditSubmit = () => {
     if (editContent.trim() && editContent !== message.content) {
       onEdit(editContent);
@@ -159,9 +165,9 @@ export function MessageItem({ message, isGrouped, onReaction, onPin, onDelete, o
               <div className="mt-3 max-w-md">
                 {message.fileDetails.mimeType?.startsWith("image/") ? (
                   <motion.div whileHover={{ scale: 1.02 }} className="rounded-xl overflow-hidden border border-white/10 shadow-lg cursor-pointer relative group inline-block">
-                    <img src={message.fileDetails.url} alt="attachment" className="max-h-[300px] object-cover" />
+                    <img src={getFileUrl(message.fileDetails.url)} alt="attachment" className="max-h-[300px] object-cover" />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
-                      <button onClick={() => window.open(message.fileDetails!.url, "_blank")} className="p-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors">
+                      <button onClick={() => window.open(getFileUrl(message.fileDetails!.url), "_blank")} className="p-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors">
                         <Icons.externalLink className="w-5 h-5" />
                       </button>
                     </div>
@@ -169,7 +175,7 @@ export function MessageItem({ message, isGrouped, onReaction, onPin, onDelete, o
                 ) : (
                   <motion.div 
                     whileHover={{ scale: 1.01 }}
-                    onClick={() => window.open(message.fileDetails!.url, "_blank")}
+                    onClick={() => window.open(getFileUrl(message.fileDetails!.url), "_blank")}
                     className="inline-flex items-center gap-3 p-3 pr-5 rounded-xl bg-gradient-to-r from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-all cursor-pointer shadow-sm group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500/30 transition-all">
