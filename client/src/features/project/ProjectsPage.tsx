@@ -87,7 +87,7 @@ export function ProjectsPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scrollbar relative bg-[#0a0710]">
         
         {/* Top Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-8 pb-4 shrink-0 max-w-7xl mx-auto w-full">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-8 pb-4 shrink-0 w-full">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Projects</h1>
             <p className="text-white/60 text-sm">Plan, organize, and track all your projects in one place.</p>
@@ -112,7 +112,7 @@ export function ProjectsPage() {
 
         {/* Toolbar */}
         <div className="border-b border-white/5 shrink-0">
-          <div className="px-8 flex items-center justify-between max-w-7xl mx-auto w-full">
+          <div className="px-8 flex items-center justify-between w-full">
             <div className="flex items-center gap-2">
               {[
                 { id: "all", label: "All Projects", icon: Icons.grid },
@@ -156,7 +156,7 @@ export function ProjectsPage() {
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-8 pb-32 max-w-7xl mx-auto w-full relative">
+        <div className="flex-1 p-8 pb-32 w-full relative">
 
           {/* Projects Grid */}
           <div>

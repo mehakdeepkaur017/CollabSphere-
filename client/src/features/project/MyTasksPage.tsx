@@ -233,7 +233,7 @@ export function MyTasksPage() {
 
   return (
     <div className="flex flex-col h-full bg-[#050508] text-white overflow-y-auto custom-scrollbar relative">
-      <div className="max-w-7xl mx-auto w-full p-8 md:p-12 pb-24">
+      <div className="w-full p-8 md:p-12 pb-24">
         
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 relative">

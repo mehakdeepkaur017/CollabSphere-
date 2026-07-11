@@ -62,7 +62,7 @@ export function HomePage() {
 
   return (
     <>
-      <MotionWrapper variant="page" className="flex flex-col gap-6 pb-12 w-full max-w-[1400px] mx-auto px-6">
+      <MotionWrapper variant="page" className="flex flex-col gap-6 pb-12 w-full px-8 md:px-12">
         
         {/* Header */}
         <HomeHeader 

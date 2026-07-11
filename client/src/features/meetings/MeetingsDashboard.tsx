@@ -75,7 +75,7 @@ export function MeetingsDashboard() {
   };
 
   return (
-    <div className="min-h-full flex flex-col p-8 pb-32 md:pb-8 max-w-7xl mx-auto w-full relative">
+    <div className="min-h-full flex flex-col p-8 pb-32 md:pb-8 w-full relative">
       {/* Header Container with custom background */}
       <div className="relative w-full h-32 shrink-0 mb-8 rounded-2xl overflow-hidden bg-[#0a0710] border border-white/5 flex items-center px-8 z-10">
         
