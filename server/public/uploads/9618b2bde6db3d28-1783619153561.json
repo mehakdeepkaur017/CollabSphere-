@@ -1,0 +1,36 @@
+{
+    "history": [
+        {
+            "role": "user",
+            "content": "open"
+        },
+        {
+            "role": "assistant",
+            "content": "Error communicating with AI: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        {
+            "role": "user",
+            "content": "open Chrome"
+        },
+        {
+            "role": "assistant",
+            "content": "Opening chrome"
+        },
+        {
+            "role": "user",
+            "content": "open WhatsApp"
+        },
+        {
+            "role": "assistant",
+            "content": "Application 'whatsapp' not natively mapped. Try opening via Start menu manually."
+        },
+        {
+            "role": "user",
+            "content": "what is 55 + 9"
+        },
+        {
+            "role": "assistant",
+            "content": "The result is 64"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <input type="file" id="file" multiple />
+  <button id="upload">Upload</button>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <script>
+    const api = axios.create({
+      baseURL: 'http://localhost:5000/api',
+      withCredentials: true,
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    api.interceptors.request.use((config) => {
+      if (config.data instanceof FormData) {
+        if (config.headers && typeof config.headers.delete === 'function') {
+          config.headers.delete('Content-Type');
+        } else if (config.headers) {
+          delete config.headers['Content-Type'];
+        }
+      }
+      return config;
+    });
+
+    document.getElementById('upload').addEventListener('click', async () => {
+      try {
+        const email = `test_${Date.now()}@test.com`;
+        await axios.post('http://localhost:5000/api/auth/register', { name: 'Test', email, password: 'password123' });
+        await axios.post('http://localhost:5000/api/auth/login', { email, password: 'password123' });
+        
+        const wsRes = await api.post('/workspaces', { name: 'Test WS', description: 'Desc' });
+        const workspaceId = wsRes.data._id;
+
+        const fileInput = document.getElementById('file');
+        const formData = new FormData();
+        formData.append('workspaceId', workspaceId);
+        for (let i = 0; i < fileInput.files.length; i++) {
+          formData.append('files', fileInput.files[i]);
+        }
+
+        const res = await api.post('/files', formData);
+        console.log("SUCCESS:", res.data);
+      } catch (e) {
+        console.error("FAILED:", e.response?.data || e);
+      }
+    });
+  </script>
+</body>
+</html>

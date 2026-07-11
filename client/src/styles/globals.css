@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@import "./colors.css";
+@import "./typography.css";
+@import "./spacing.css";
+@import "./radius.css";
+@import "./shadows.css";
+@import "./animations.css";
+
+@layer base {
+  html, body {
+    @apply antialiased h-full w-full bg-background text-foreground font-sans;
+  }
+  
+  #root {
+    @apply h-full w-full;
+  }
+
+  /* Accessibility focus rings */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background;
+  }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  /* Show scrollbar on hover of a scrollable container */
+  *:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.2); /* text-muted-foreground/20 */
+  }
+  
+  /* Purple on active/hover of the thumb itself */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(139, 92, 246, 0.6); /* Purple-500 with opacity */
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(139, 92, 246, 0.8);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  *:hover {
+    scrollbar-color: rgba(156, 163, 175, 0.2) transparent;
+  }
+
+  /* Beautiful Selection */
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
