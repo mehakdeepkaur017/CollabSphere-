@@ -112,7 +112,7 @@ export function FileDetailsDrawer({ file, onClose, onToggleStar, onDownload }: F
             >
               {isImage ? (
                 <div className="w-full aspect-video rounded-xl bg-black/40 border border-white/10 overflow-hidden flex items-center justify-center">
-                  <img src={file.url} alt={file.name} className="w-full h-full object-cover" />
+                  <img src={file.url.startsWith('http') ? file.url : `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}${file.url}`} alt={file.name} className="w-full h-full object-cover" />
                 </div>
               ) : (
                 <div className="w-full aspect-video rounded-xl bg-indigo-500/10 border border-indigo-500/20 overflow-hidden flex items-center justify-center text-indigo-400">
