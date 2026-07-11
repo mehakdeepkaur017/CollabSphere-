@@ -81,13 +81,13 @@ export function MeetingsDashboard() {
         
         {/* Center Graphic Scene */}
         <div className="absolute inset-0 flex justify-center items-end pointer-events-none overflow-hidden">
-          {/* Main Background Glow */}
-          <div className="absolute top-[-50px] w-full max-w-[800px] h-[300px] bg-purple-600/20 blur-[80px] rounded-full" />
+          {/* Main Background Glow (Optimized for performance) */}
+          <div className="absolute top-[-50px] w-full max-w-[800px] h-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-600/30 to-transparent rounded-full" />
           
           {/* Stars */}
-          <div className="absolute top-4 left-1/3 h-1 w-1 bg-white rounded-full opacity-50 blur-[1px]" />
-          <div className="absolute top-10 left-1/4 h-1.5 w-1.5 bg-white rounded-full opacity-70 blur-[1px]" />
-          <div className="absolute top-8 right-1/3 h-1 w-1 bg-white rounded-full opacity-40 blur-[1px]" />
+          <div className="absolute top-4 left-1/3 h-1 w-1 bg-white rounded-full opacity-50" />
+          <div className="absolute top-10 left-1/4 h-1.5 w-1.5 bg-white rounded-full opacity-70" />
+          <div className="absolute top-8 right-1/3 h-1 w-1 bg-white rounded-full opacity-40" />
           
           {/* Clouds */}
           <svg className="absolute bottom-6 left-[35%] w-16 h-10 opacity-30 text-purple-900" viewBox="0 0 24 24" fill="currentColor">
