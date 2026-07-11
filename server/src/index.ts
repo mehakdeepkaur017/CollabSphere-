@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve static files from public directory
-app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));
+// app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads'))); // No longer needed with Cloudinary
 
 // Socket.IO
 const io = new Server(httpServer, {

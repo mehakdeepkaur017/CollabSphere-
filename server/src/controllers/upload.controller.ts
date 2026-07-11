@@ -6,8 +6,8 @@ export const uploadFile = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Construct the URL. Since this is local, we serve it statically from /uploads
-    const url = `/uploads/${req.file.filename}`;
+    // The URL is provided by Cloudinary via req.file.path
+    const url = req.file.path;
 
     res.status(201).json({
       url,

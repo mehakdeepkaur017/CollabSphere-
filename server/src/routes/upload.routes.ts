@@ -8,22 +8,7 @@ import fs from "fs";
 
 const router = Router();
 
-// Ensure uploads directory exists
-const uploadDir = path.join(process.cwd(), "public", "uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const uniqueSuffix = crypto.randomBytes(8).toString("hex") + "-" + Date.now();
-    cb(null, uniqueSuffix + ext);
-  },
-});
+import { storage } from "../utils/cloudinary";
 
 const upload = multer({
   storage,

@@ -23,14 +23,14 @@ export const uploadFiles = async (req: Request, res: Response) => {
       extension: file.originalname.split(".").pop() || "",
       mimeType: file.mimetype,
       size: file.size,
-      url: `/uploads/${file.filename}`, // Assuming local storage
+      url: file.path, // Cloudinary URL
       workspaceId: workspaceId || undefined,
       folderId: folderId || undefined,
       projectId: projectId || undefined,
       uploadedBy: userId,
       versions: [
         {
-          url: `/uploads/${file.filename}`,
+          url: file.path,
           size: file.size,
           uploadedBy: userId,
         },
