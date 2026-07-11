@@ -56,6 +56,9 @@ export function HomePage() {
   const onlineMembersCount = activeWorkspace.members.filter(m => isUserOnline(m.user._id)).length
   const projectsCount = projects?.length || 0
   const meetingsCount = meetings.length
+  
+  const projectsThisWeekCount = projects?.filter(p => new Date(p.createdAt) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length || 0;
+  const meetingsTodayCount = meetings.filter(m => new Date(m.startTime).toDateString() === new Date().toDateString()).length;
 
   return (
     <>
@@ -70,9 +73,11 @@ export function HomePage() {
         {/* 4 Metrics Cards */}
         <DashboardMetrics 
           projectsCount={projectsCount}
+          projectsThisWeekCount={projectsThisWeekCount}
           membersCount={activeWorkspace.members.length}
           onlineMembersCount={onlineMembersCount}
           meetingsCount={meetingsCount} 
+          meetingsTodayCount={meetingsTodayCount}
           tasksCount={0} 
           pendingTasksCount={0} 
         />

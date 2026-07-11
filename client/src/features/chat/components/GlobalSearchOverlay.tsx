@@ -91,7 +91,7 @@ export function GlobalSearchOverlay({ isOpen, onClose }: GlobalSearchOverlayProp
                   className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 transition-colors text-left w-full group"
                 >
                   <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-                    {channel.isPrivate ? <Icons.lock className="w-4 h-4" /> : <Icons.hash className="w-4 h-4" />}
+                    {channel.type === "private" ? <Icons.lock className="w-4 h-4" /> : <Icons.hash className="w-4 h-4" />}
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-semibold text-white/90">{channel.name}</span>
