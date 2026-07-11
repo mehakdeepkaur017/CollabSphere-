@@ -95,7 +95,8 @@ export function FilesHubPage() {
   const handleDownload = async (id: string) => {
     const file = files.find(f => f._id === id);
     if (file) {
-      const fullUrl = `http://localhost:5000${file.url}`;
+      const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+      const fullUrl = `${baseUrl}${file.url}`;
       try {
         const response = await fetch(fullUrl);
         if (!response.ok) throw new Error("Network response was not ok");
