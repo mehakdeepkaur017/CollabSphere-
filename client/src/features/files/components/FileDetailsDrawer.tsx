@@ -58,7 +58,8 @@ export function FileDetailsDrawer({ file, onClose, onToggleStar, onDownload }: F
             onClick={() => {
               // Trigger preview via global event or we can just open the URL
               const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
-              window.open(`${baseUrl}${file.url}`, "_blank");
+              const fullUrl = file.url.startsWith('http') ? file.url : `${baseUrl}${file.url}`;
+              window.open(fullUrl, "_blank");
             }}
             className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 text-white/50 hover:text-white transition-colors"
             title="Open in new tab"
